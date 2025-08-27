@@ -1,0 +1,7 @@
+dotnet ef migrations add Templates -p .\DocumentSigningSolution.Infrastructure\ -s .\DocumentSigningSolution.Api\
+
+dotnet ef database update -p .\DocumentSigningSolution.Infrastructure\ -s .\DocumentSigningSolution.Api\ --connection "Server=localhost;Database=DocumentSigningSolution;User Id=sa;Password=YourStrong!Passw0rd;Encrypt=false"
+
+dotnet ef migrations remove -p .\DocumentSigningSolution.Infrastructure\ -s .\DocumentSigningSolution.Api\
+
+dotnet ef database drop -p .\DocumentSigningSolution.Infrastructure\ -s .\DocumentSigningSolution.Api\

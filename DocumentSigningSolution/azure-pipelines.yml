@@ -1,0 +1,25 @@
+trigger:
+  branches:
+    include:
+      - '*'  # Trigger for all branches
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '9.0.x'  # Replace with your required .NET SDK version
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+
+  - script: |
+      dotnet restore DocumentSigningSolution.sln
+    displayName: 'Restore NuGet Packages'
+
+  - script: |
+      dotnet build DocumentSigningSolution.sln --configuration $(buildConfiguration) --no-restore
+    displayName: 'Build Solution'

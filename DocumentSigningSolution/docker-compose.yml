@@ -1,0 +1,17 @@
+services:
+
+  documentsigningsolutiondb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+
+  documentsigningsolution.api:
+    image: ${DOCKER_REGISTRY-}documentsigningsolutionapi
+    build:
+      context: .
+      dockerfile: DocumentSigningSolution.Api/Dockerfile
+
+volumes:
+  mssql_documentsigningsolution:
+  azurite_data:
