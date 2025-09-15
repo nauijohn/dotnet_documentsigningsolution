@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  documentsigningsolution.api:
+    build:
+      context: "/Users/anthonynaui/RiderProjects/DocumentSigningSolution"
+      dockerfile: "DocumentSigningSolution.Api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/DocumentSigningSolution.Api.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "documentsigningsolutionapi:dev"
+    ports: []
+    volumes:
+    - "/Users/anthonynaui/RiderProjects/DocumentSigningSolution/DocumentSigningSolution.Api:/app:rw"
+    - "/Users/anthonynaui/RiderProjects/DocumentSigningSolution:/src:rw"
+    - "/Users/anthonynaui/.microsoft/usersecrets:/home/app/.microsoft/usersecrets"
+    - "/Users/anthonynaui/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"

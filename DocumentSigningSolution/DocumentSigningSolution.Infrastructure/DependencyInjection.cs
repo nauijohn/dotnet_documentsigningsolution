@@ -1,6 +1,8 @@
 ﻿using DocumentSigningSolution.Application.Common.Interfaces.Persistence.Generics;
 using DocumentSigningSolution.Infrastructure.Persistence.Repositories.Generics;
 
+using Microsoft.AspNetCore.Identity;
+
 namespace DocumentSigningSolution.Infrastructure;
 public static class DependencyInjection
 {
@@ -30,6 +32,16 @@ public static class DependencyInjection
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
+        services.AddIdentity<IdentityUser, IdentityRole>(options =>
+        {
+            options.Password.RequireDigit = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireNonAlphanumeric = true;
+            options.Password.RequireUppercase = true;
+            options.Password.RequiredLength = 8;
+            options.User.RequireUniqueEmail = true;
+        }).AddEntityFrameworkStores<DocumentSigningSolutionDbContext>();
+        
         services.AddDbContext<DocumentSigningSolutionDbContext>(options =>
             options.UseSqlServer(connectionString));
         

@@ -1,4 +1,6 @@
-﻿namespace DocumentSigningSolution.Infrastructure.Authentication;
+﻿using System.Security.Cryptography;
+
+namespace DocumentSigningSolution.Infrastructure.Authentication;
 public class JwtTokenGenerator(
     IDateTimeProvider dateTimeProvider,
     IOptions<JwtSettings> jwtOptions)
@@ -28,5 +30,13 @@ public class JwtTokenGenerator(
             signingCredentials: signingCredentials);
 
         return new JwtSecurityTokenHandler().WriteToken(securityToken);
+    }
+
+    public string GenerateRefreshToken()
+    {
+        var randomNumber = new byte[64];
+        using var rng = RandomNumberGenerator.Create();
+        rng.GetBytes(randomNumber);
+        return Convert.ToBase64String(randomNumber);
     }
 }
