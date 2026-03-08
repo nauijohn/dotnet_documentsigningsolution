@@ -1,0 +1,37 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  documentsigningsolution.api:
+    build:
+      context: "/Users/anthonynaui/RiderProjects/DocumentSigningSolution"
+      dockerfile: "DocumentSigningSolution.Api/Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/JetBrains/RiderDebuggerTools/linux-arm64/JetBrains.Debugger.Worker"
+    - "--runtimeconfig"
+    - "/opt/JetBrains/RiderDebuggerTools/JetBrains.Debugger.Worker.runtimeconfig.json"
+    - "--mode=server"
+    - "--frontend-port=57000"
+    - "--backend-port=57200"
+    - "--roslyn-worker-port=57412"
+    - "--timeout=60"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/JetBrains/RiderDebuggerTools"
+      RESHARPER_LOG_CONF: "/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
+    image: "documentsigningsolutionapi:dev"
+    ports:
+    - "127.0.0.1:57012:57000"
+    - "127.0.0.1:57212:57200"
+    - "127.0.0.1:57412:57412"
+    volumes:
+    - "/Users/anthonynaui/RiderProjects/DocumentSigningSolution/DocumentSigningSolution.Api:/app:rw"
+    - "/Users/anthonynaui/RiderProjects/DocumentSigningSolution:/src:rw"
+    - "/Users/anthonynaui/.microsoft/usersecrets:/home/app/.microsoft/usersecrets"
+    - "/Users/anthonynaui/.nuget/packages:/home/app/.nuget/packages"
+    - "/Users/anthonynaui/.local/share/JetBrains/RiderRemoteDebugger/2025.1.7/LinuxArm64:/opt/JetBrains/RiderDebuggerTools"
+    - "/Applications/Rider.app/Contents/bin/backend-log.xml:/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
+    - "/Users/anthonynaui/Library/Logs/JetBrains/Rider2025.1/DebuggerWorker/JetBrains.Debugger.Worker.2025_9_15_11_57_45:/var/opt/JetBrains/RiderDebuggerTools:rw"
+    working_dir: "/app"

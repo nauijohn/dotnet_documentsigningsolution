@@ -1,4 +1,5 @@
 ﻿using DocumentSigningSolution.Application.Common.Interfaces.Persistence.Generics;
+using DocumentSigningSolution.Domain.ApplicationUser;
 using DocumentSigningSolution.Infrastructure.Persistence.Repositories.Generics;
 
 using Microsoft.AspNetCore.Identity;
@@ -32,18 +33,23 @@ public static class DependencyInjection
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-        services.AddIdentity<IdentityUser, IdentityRole>(options =>
-        {
-            options.Password.RequireDigit = true;
-            options.Password.RequireLowercase = true;
-            options.Password.RequireNonAlphanumeric = true;
-            options.Password.RequireUppercase = true;
-            options.Password.RequiredLength = 8;
-            options.User.RequireUniqueEmail = true;
-        }).AddEntityFrameworkStores<DocumentSigningSolutionDbContext>();
-        
+        // Register your unified DbContext
         services.AddDbContext<DocumentSigningSolutionDbContext>(options =>
             options.UseSqlServer(connectionString));
+
+        // Register Identity using the same DbContext
+        services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 8;
+                options.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<DocumentSigningSolutionDbContext>()
+            .AddDefaultTokenProviders();
+        
         
         services.AddScoped(typeof(IRepository<,,>), typeof(Repository<,,>));
         services.AddScoped<IUserRepository, UserRepository>();

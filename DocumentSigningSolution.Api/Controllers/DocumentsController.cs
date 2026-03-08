@@ -6,6 +6,7 @@ using DocumentSigningSolution.Api.Controllers.Utilities.Extensions;
 namespace DocumentSigningSolution.Api.Controllers;
 
 [Route("[controller]")]
+[AllowAnonymous]
 public class DocumentsController(ISender _mediator) : ApiController
 {
     
