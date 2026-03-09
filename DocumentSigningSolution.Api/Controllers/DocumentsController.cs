@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-
-using DocumentSigningSolution.Api.Controllers.Common;
+﻿using DocumentSigningSolution.Api.Controllers.Common;
 using DocumentSigningSolution.Api.Controllers.Utilities.Extensions;
 
 namespace DocumentSigningSolution.Api.Controllers;

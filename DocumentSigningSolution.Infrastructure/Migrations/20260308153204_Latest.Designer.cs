@@ -4,6 +4,7 @@ using DocumentSigningSolution.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentSigningSolution.Infrastructure.Migrations
 {
     [DbContext(typeof(DocumentSigningSolutionDbContext))]
-    partial class DocumentSigningSolutionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260308153204_Latest")]
+    partial class Latest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

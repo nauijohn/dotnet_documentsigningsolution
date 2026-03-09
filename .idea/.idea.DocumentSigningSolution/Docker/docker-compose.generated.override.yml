@@ -2,7 +2,7 @@
 services:
   documentsigningsolution.api:
     build:
-      context: "/Users/anthonynaui/RiderProjects/DocumentSigningSolution"
+      context: "/Users/anthonynaui/Documents/GitHub/dotnet_documentsigningsolution"
       dockerfile: "DocumentSigningSolution.Api/Dockerfile"
       target: "base"
       args:
@@ -15,7 +15,7 @@ services:
     - "--mode=server"
     - "--frontend-port=57000"
     - "--backend-port=57200"
-    - "--roslyn-worker-port=57412"
+    - "--roslyn-worker-port=57407"
     - "--timeout=60"
     environment:
       DOTNET_USE_POLLING_FILE_WATCHER: "true"
@@ -23,15 +23,15 @@ services:
       RESHARPER_LOG_CONF: "/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
     image: "documentsigningsolutionapi:dev"
     ports:
-    - "127.0.0.1:57012:57000"
-    - "127.0.0.1:57212:57200"
-    - "127.0.0.1:57412:57412"
+    - "127.0.0.1:57007:57000"
+    - "127.0.0.1:57207:57200"
+    - "127.0.0.1:57407:57407"
     volumes:
-    - "/Users/anthonynaui/RiderProjects/DocumentSigningSolution/DocumentSigningSolution.Api:/app:rw"
-    - "/Users/anthonynaui/RiderProjects/DocumentSigningSolution:/src:rw"
+    - "/Users/anthonynaui/Documents/GitHub/dotnet_documentsigningsolution/DocumentSigningSolution.Api:/app:rw"
+    - "/Users/anthonynaui/Documents/GitHub/dotnet_documentsigningsolution:/src:rw"
     - "/Users/anthonynaui/.microsoft/usersecrets:/home/app/.microsoft/usersecrets"
     - "/Users/anthonynaui/.nuget/packages:/home/app/.nuget/packages"
-    - "/Users/anthonynaui/.local/share/JetBrains/RiderRemoteDebugger/2025.1.7/LinuxArm64:/opt/JetBrains/RiderDebuggerTools"
+    - "/Users/anthonynaui/.local/share/JetBrains/RiderRemoteDebugger/2025.3.3/LinuxArm64:/opt/JetBrains/RiderDebuggerTools"
     - "/Applications/Rider.app/Contents/bin/backend-log.xml:/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
-    - "/Users/anthonynaui/Library/Logs/JetBrains/Rider2025.1/DebuggerWorker/JetBrains.Debugger.Worker.2025_9_15_11_57_45:/var/opt/JetBrains/RiderDebuggerTools:rw"
+    - "/Users/anthonynaui/Library/Logs/JetBrains/Rider2025.3/DebuggerWorker/JetBrains.Debugger.Worker.2026_3_09_02_53_29:/var/opt/JetBrains/RiderDebuggerTools:rw"
     working_dir: "/app"

@@ -190,7 +190,6 @@ csharp_prefer_system_threading_lock = true:suggestion
 [*.{cs,vb}]
 
 # Naming rules
-
 dotnet_naming_rule.types_and_namespaces_should_be_pascalcase.severity = suggestion
 dotnet_naming_rule.types_and_namespaces_should_be_pascalcase.symbols = types_and_namespaces
 dotnet_naming_rule.types_and_namespaces_should_be_pascalcase.style = pascalcase
@@ -379,4 +378,3 @@ dotnet_naming_style.s_camelcase.capitalization = camel_case
 tab_width = 4
 indent_size = 4
 end_of_line = crlf
-
